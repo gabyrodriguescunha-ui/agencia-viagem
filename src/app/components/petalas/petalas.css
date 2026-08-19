@@ -1,0 +1,197 @@
+/* Faz o componente ocupar toda a área do elemento onde foi inserido. */
+:host {
+  position: absolute;
+  /* Mantém as pétalas acima da imagem do banner. */
+  z-index: 4;
+  inset: 0;
+
+  display: block;
+  overflow: hidden;
+
+  /* Permite clicar nos textos e botões que estiverem abaixo das pétalas. */
+  pointer-events: none;
+}
+
+/* Camada interna que contém todas as pétalas. */
+.petalas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Formato básico de cada pétala. */
+.petala {
+  position: absolute;
+  top: -40px;
+  display: block;
+  width: 18px;
+  height: 13px;
+
+  /* Cores diretas garantem que as pétalas apareçam mesmo sem variáveis globais. */
+  background: linear-gradient(
+    135deg,
+    #ff8faf,
+    #ffe3eb
+  );
+
+  /* Cria um formato orgânico semelhante ao de uma pétala. */
+  border-radius: 80% 10% 80% 10%;
+  box-shadow: 0 2px 5px rgb(93 12 36 / 20%);
+  opacity: 1;
+
+  /* A animação movimenta e gira a pétala durante a queda. */
+  animation: cair 10s linear infinite;
+}
+
+/* Define posições, tamanhos e velocidades diferentes. */
+.petala:nth-child(1) {
+  left: 3%;
+  animation-delay: -2s;
+  animation-duration: 11s;
+}
+
+.petala:nth-child(2) {
+  left: 9%;
+  width: 12px;
+  height: 9px;
+  animation-delay: -7s;
+  animation-duration: 13s;
+}
+
+.petala:nth-child(3) {
+  left: 15%;
+  animation-delay: -4s;
+  animation-duration: 9s;
+}
+
+.petala:nth-child(4) {
+  left: 22%;
+  width: 18px;
+  height: 13px;
+  animation-delay: -9s;
+  animation-duration: 14s;
+}
+
+.petala:nth-child(5) {
+  left: 29%;
+  animation-delay: -1s;
+  animation-duration: 10s;
+}
+
+.petala:nth-child(6) {
+  left: 36%;
+  width: 11px;
+  height: 8px;
+  animation-delay: -6s;
+  animation-duration: 12s;
+}
+
+.petala:nth-child(7) {
+  left: 43%;
+  animation-delay: -3s;
+  animation-duration: 15s;
+}
+
+.petala:nth-child(8) {
+  left: 50%;
+  width: 17px;
+  height: 12px;
+  animation-delay: -11s;
+  animation-duration: 13s;
+}
+
+.petala:nth-child(9) {
+  left: 56%;
+  animation-delay: -5s;
+  animation-duration: 9s;
+}
+
+.petala:nth-child(10) {
+  left: 62%;
+  width: 12px;
+  height: 9px;
+  animation-delay: -8s;
+  animation-duration: 14s;
+}
+
+.petala:nth-child(11) {
+  left: 68%;
+  animation-delay: -2s;
+  animation-duration: 11s;
+}
+
+.petala:nth-child(12) {
+  left: 73%;
+  width: 19px;
+  height: 14px;
+  animation-delay: -10s;
+  animation-duration: 16s;
+}
+
+.petala:nth-child(13) {
+  left: 78%;
+  animation-delay: -4s;
+  animation-duration: 12s;
+}
+
+.petala:nth-child(14) {
+  left: 83%;
+  width: 11px;
+  height: 8px;
+  animation-delay: -7s;
+  animation-duration: 10s;
+}
+
+.petala:nth-child(15) {
+  left: 88%;
+  animation-delay: -1s;
+  animation-duration: 14s;
+}
+
+.petala:nth-child(16) {
+  left: 92%;
+  width: 17px;
+  height: 12px;
+  animation-delay: -9s;
+  animation-duration: 11s;
+}
+
+.petala:nth-child(17) {
+  left: 96%;
+  animation-delay: -5s;
+  animation-duration: 15s;
+}
+
+.petala:nth-child(18) {
+  left: 99%;
+  width: 12px;
+  height: 9px;
+  animation-delay: -12s;
+  animation-duration: 13s;
+}
+
+/* Movimento vertical e horizontal das pétalas. */
+@keyframes cair {
+  0% {
+    transform: translate3d(0, -40px, 0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate3d(35px, 25vh, 0) rotate(90deg);
+  }
+
+  50% {
+    transform: translate3d(-25px, 50vh, 0) rotate(180deg);
+  }
+
+  75% {
+    transform: translate3d(45px, 75vh, 0) rotate(270deg);
+  }
+
+  100% {
+    transform: translate3d(-20px, 110vh, 0) rotate(360deg);
+  }
+}
+

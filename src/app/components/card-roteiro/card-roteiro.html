@@ -1,0 +1,30 @@
+<!-- Card reutilizável que apresenta um roteiro. -->
+<article class="card-roteiro">
+  <div class="area-imagem">
+    <img [src]="roteiro().imagem" [alt]="'Vista do roteiro ' + roteiro().nome" />
+    <span class="categoria">{{ roteiro().categoria }}</span>
+  </div>
+
+  <div class="conteudo-card">
+    <p class="localizacao">{{ roteiro().cidade }}</p>
+    <h2>{{ roteiro().nome }}</h2>
+    <p class="descricao">{{ roteiro().descricao }}</p>
+
+    <div class="informacoes">
+      <span>{{ roteiro().duracao }}</span>
+      <span>{{ roteiro().vagas }} vagas</span>
+    </div>
+
+    <div class="rodape-card">
+      <div class="preco">
+        <small>A partir de</small>
+        <strong>{{ formatarPreco(roteiro().preco) }}</strong>
+        <span>por pessoa</span>
+      </div>
+
+      <a class="botao-detalhes" [routerLink]="['/roteiros', roteiro().id]">
+        Ver roteiro <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,112 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+/* Cria a barra lateral da administração. */
+.menu-admin {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  height: 100vh;
+  padding: 28px 20px;
+  color: var(--cor-branco);
+  background-color: var(--cor-texto);
+}
+
+/* Organiza o símbolo e o nome da agência. */
+.marca-admin {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 0 8px 26px;
+  color: var(--cor-branco);
+  text-decoration: none;
+  border-bottom: 1px solid var(--cor-texto-suave);
+}
+
+/* Cria o pequeno sol da marca. */
+.marca-sol {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  background-color: var(--cor-vermelho-japao);
+  border-radius: 50%;
+  box-shadow: var(--sombra-sol);
+}
+
+/* Organiza o nome e a identificação do painel. */
+.marca-admin > span:last-child {
+  display: grid;
+}
+
+/* Nome da agência. */
+.marca-admin strong {
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+}
+
+/* Identificação Administração. */
+.marca-admin small {
+  color: var(--cor-rosa-sakura);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Organiza verticalmente os links administrativos. */
+nav {
+  display: grid;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+/* links do menu. */
+nav a {
+  padding: 13px 14px;
+  color: var(--cor-branco);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+/* Destaca o link da página atual. */
+nav a:hover,
+nav a.link-ativo {
+  background-color: var(--cor-vermelho-japao);
+}
+
+/* Mantém o link de retorno no final do menu. */
+.voltar-site {
+  padding: 13px 14px;
+  margin-top: auto;
+  color: var(--cor-rosa-sakura);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+/* ===== Responsividade ===== */
+
+/* Ajusta o menu para telas menores. */
+@media (width <= 800px) {
+  :host {
+    min-height: auto;
+  }
+
+  .menu-admin {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+
+  nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .voltar-site {
+    margin-top: 20px;
+  }
+}

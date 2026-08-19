@@ -1,0 +1,220 @@
+/* Organiza o menu lateral e o conteúdo financeiro. */
+.layout-admin {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--cor-fundo);
+}
+
+/* Define o espaço interno da página. */
+.pagina-financeiro {
+  flex: 1;
+  padding: 40px;
+  overflow: hidden;
+}
+
+/* Cria um espaço abaixo do título principal. */
+.titulo-pagina {
+  margin-bottom: 28px;
+}
+
+/* Título principal. */
+.titulo-pagina h1 {
+  margin: 4px 0 8px;
+  color: var(--cor-texto);
+  font-family: var(--fonte-titulo);
+  font-size: 32px;
+}
+
+/* Textos auxiliares. */
+.titulo-pagina p,
+.titulo-secao p {
+  margin: 0;
+
+  color: var(--cor-texto-suave);
+}
+
+/* Destaca o texto acima do título. */
+.titulo-pagina .etiqueta {
+  color: var(--cor-vermelho-japao);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Distribui os indicadores financeiros em quatro colunas. */
+.indicadores {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+
+  margin-bottom: 24px;
+}
+
+/* Cria o formato visual dos indicadores. */
+.indicador {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 130px;
+  padding: 22px;
+  background-color: var(--cor-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: 16px;
+  box-shadow: var(--sombra-card);
+}
+
+/* nome de cada indicador. */
+.indicador span {
+  color: var(--cor-texto-suave);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Destaca o valor de cada indicador. */
+.indicador strong {
+  color: var(--cor-texto);
+  font-family: var(--fonte-titulo);
+  font-size: 25px;
+}
+
+/* Explicação abaixo do valor. */
+.indicador small {
+  margin-top: auto;
+  color: var(--cor-texto-suave);
+  font-size: 12px;
+}
+
+/* Cria uma identificação colorida para cada indicador. */
+.indicador-recebido {
+  border-top: 4px solid var(--cor-sucesso);
+}
+
+.indicador-pendente {
+  border-top: 4px solid var(--cor-rosa-sakura);
+}
+
+.indicador-medio {
+  border-top: 4px solid var(--cor-vermelho-japao);
+}
+
+.indicador-cancelado {
+  border-top: 4px solid var(--cor-erro);
+}
+
+/* Cria o painel que contém a tabela financeira. */
+.painel-movimentacoes {
+  padding: 24px;
+  background-color: var(--cor-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: 16px;
+  box-shadow: var(--sombra-card);
+}
+
+/* Separa o título da tabela. */
+.titulo-secao {
+  margin-bottom: 20px;
+}
+
+/* Título da seção. */
+.titulo-secao h2 {
+  margin: 0 0 6px;
+  color: var(--cor-texto);
+  font-size: 22px;
+}
+
+/* Permite rolagem horizontal em telas menores. */
+.tabela-responsiva {
+  overflow-x: auto;
+}
+
+/* Define o tamanho e a estrutura da tabela. */
+table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+/* Alinha todas as células da tabela. */
+th,
+td {
+  padding: 15px 12px;
+  border-bottom: 1px solid var(--cor-borda);
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Títulos das colunas. */
+th {
+  color: var(--cor-texto-suave);
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+/* Coloca os dados auxiliares abaixo do texto principal. */
+td small {
+  display: block;
+  margin-top: 4px;
+  color: var(--cor-texto-suave);
+}
+
+/* Destaca os valores que entraram na receita. */
+.valor-recebido {
+  color: var(--cor-sucesso);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Centraliza a mensagem apresentada quando a tabela está vazia. */
+.estado-vazio {
+  padding: 48px 20px;
+  color: var(--cor-texto-suave);
+  text-align: center;
+}
+
+/* símbolo apresentado na mensagem vazia. */
+.estado-vazio span {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 16px;
+  color: var(--cor-branco);
+  background-color: var(--cor-vermelho-japao);
+  border-radius: 50%;
+  font-size: 24px;
+}
+
+/* Remove margens desnecessárias da mensagem vazia. */
+.estado-vazio h2 {
+  margin: 0 0 8px;
+  color: var(--cor-texto);
+  font-size: 21px;
+}
+
+.estado-vazio p {
+  margin: 0;
+}
+
+/* ==== Responsividade ==== */
+
+/* Adapta os indicadores para telas médias. */
+@media (max-width: 1100px) {
+  .indicadores {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Adapta a página para celulares. */
+@media (max-width: 700px) {
+  .layout-admin {
+    display: block;
+  }
+
+  .pagina-financeiro {
+    padding: 24px 16px;
+  }
+
+  .indicadores {
+    grid-template-columns: 1fr;
+  }
+}

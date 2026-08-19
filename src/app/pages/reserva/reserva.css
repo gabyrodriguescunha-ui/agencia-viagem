@@ -1,0 +1,418 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: var(--cor-fundo);
+}
+
+/* Limita a largura e centraliza o conteúdo da página. */
+.pagina-reserva {
+  width: min(1180px, 92%);
+  padding: 50px 0 90px;
+  margin: 0 auto;
+}
+
+/* Centraliza o título e o texto introdutório. */
+.titulo-pagina {
+  max-width: 720px;
+  margin: 0 auto 38px;
+  text-align: center;
+}
+
+/* Identificação acima dos títulos. */
+.etiqueta {
+  margin: 0 0 10px;
+  color: var(--cor-vermelho-japao);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Remove a margem superior padrão dos títulos e parágrafos. */
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+/* Título principal da página. */
+.titulo-pagina h1 {
+  margin-bottom: 14px;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(42px, 6vw, 64px);
+  line-height: 1;
+}
+
+/* Texto apresentado abaixo do título. */
+.titulo-pagina > p:last-child {
+  margin-bottom: 0;
+  color: var(--cor-texto-suave);
+  font-size: 15px;
+  line-height: 26px;
+}
+
+/* Divide o formulário e o resumo da reserva em duas colunas. */
+.conteudo-reserva {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 30px;
+  align-items: start;
+}
+
+/* Cria a caixa principal do formulário. */
+.formulario {
+  padding: 36px;
+  background-color: var(--cor-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: 24px;
+  box-shadow: var(--sombra-card);
+}
+
+/* Título do formulário. */
+.formulario h2 {
+  margin-bottom: 28px;
+  font-family: var(--fonte-titulo);
+  font-size: 30px;
+}
+
+/* Organiza verticalmente o título, o campo e a mensagem de erro. */
+.campo {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+/* Divide dois campos igualmente na mesma linha. */
+.campos-lado-a-lado {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* Nomes apresentados acima dos campos. */
+label {
+  color: var(--cor-texto);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Aplica a aparência padrão aos campos do formulário. */
+input:not([type="radio"]),
+select {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  color: var(--cor-texto);
+  background-color: var(--cor-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  outline: none;
+}
+
+/* Suaviza a cor do texto de exemplo dos campos. */
+input::placeholder {
+  color: var(--cor-texto-suave);
+}
+
+/* Destaca o campo atualmente selecionado pelo usuário. */
+input:not([type="radio"]):focus,
+select:focus {
+  border-color: var(--cor-vermelho-japao);
+  box-shadow: 0 0 0 3px var(--cor-rosa-claro);
+}
+
+/* Exibe as mensagens referentes aos campos inválidos. */
+.erro {
+  color: var(--cor-erro);
+  font-size: 11px;
+  line-height: 17px;
+}
+
+/* Remove a aparência padrão da área de pagamento. */
+.pagamento {
+  padding: 0;
+  margin: 8px 0 22px;
+  border: 0;
+}
+
+/* Título da área de pagamento. */
+.pagamento legend {
+  padding: 0;
+  margin-bottom: 10px;
+  color: var(--cor-texto);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Organiza as formas de pagamento verticalmente. */
+.opcoes-pagamento {
+  display: grid;
+  gap: 10px;
+}
+
+/* Cria uma caixa clicável para cada forma de pagamento. */
+.opcao-pagamento {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-height: 64px;
+  padding: 12px 14px;
+  cursor: pointer;
+  background-color: var(--cor-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+}
+
+/* Destaca a forma de pagamento selecionada. */
+.opcao-pagamento:has(input:checked) {
+  background-color: var(--cor-rosa-claro);
+  border-color: var(--cor-vermelho-japao);
+}
+
+/* Define o tamanho do botão circular de seleção. */
+.opcao-pagamento input[type="radio"] {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--cor-vermelho-japao);
+}
+
+/* Organiza o nome e a descrição da forma de pagamento. */
+.opcao-pagamento span {
+  display: grid;
+  gap: 2px;
+}
+
+/* Nome da forma de pagamento. */
+.opcao-pagamento strong {
+  color: var(--cor-texto);
+  font-size: 13px;
+}
+
+/* Descrição apresentada abaixo do nome. */
+.opcao-pagamento small {
+  color: var(--cor-texto-suave);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+/* Separa a mensagem de erro das opções de pagamento. */
+.pagamento > .erro {
+  display: block;
+  margin-top: 8px;
+}
+
+/* Informação exibida abaixo das parcelas. */
+.informacao-parcela {
+  color: var(--cor-texto-suave);
+  font-size: 11px;
+  line-height: 18px;
+}
+
+/* Botão de confirmar a reserva. */
+.botao-confirmar {
+  width: 100%;
+  min-height: 50px;
+  padding: 13px 22px;
+  margin-top: 8px;
+  color: var(--cor-branco);
+  font-weight: 600;
+  cursor: pointer;
+  background-color: var(--cor-vermelho-japao);
+  border: 0;
+  border-radius: 999px;
+}
+
+.botao-confirmar:hover {
+  opacity: 0.9;
+}
+
+.botao-confirmar:focus-visible {
+  outline: 3px solid var(--cor-rosa-sakura);
+  outline-offset: 3px;
+}
+
+/* Mantém o resumo visível durante parte da rolagem da página. */
+.resumo-reserva {
+  position: sticky;
+  top: 110px;
+  padding: 30px;
+  background-color: var(--cor-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: 24px;
+  box-shadow: var(--sombra-card);
+}
+
+/* Nome do roteiro selecionado. */
+.resumo-reserva h2 {
+  margin-bottom: 8px;
+  font-family: var(--fonte-titulo);
+  font-size: 28px;
+}
+
+/* Cidade  do roteiro. */
+.resumo-reserva > p:not(.etiqueta) {
+  margin-bottom: 24px;
+  color: var(--cor-texto-suave);
+  font-size: 13px;
+}
+
+/* Organiza as informações de preço e quantidade. */
+.linha-resumo {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  font-size: 13px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+/* Suaviza os nomes das informações do resumo. */
+.linha-resumo span {
+  color: var(--cor-texto-suave);
+}
+
+/* Organiza e destaca o valor total da reserva. */
+.total {
+  display: grid;
+  gap: 6px;
+  padding: 22px 0;
+}
+
+/* Texto localizado acima do valor total. */
+.total span {
+  color: var(--cor-texto-suave);
+  font-size: 12px;
+}
+
+/* Destaca o valor total calculado. */
+.total strong {
+  color: var(--cor-vermelho-japao);
+  font-family: var(--fonte-titulo);
+  font-size: 32px;
+}
+
+/* Aviso apresentado no final do resumo. */
+.resumo-reserva > small {
+  display: block;
+  padding: 14px;
+  color: var(--cor-texto-suave);
+  font-size: 11px;
+  line-height: 18px;
+  background-color: var(--cor-rosa-claro);
+  border-radius: 12px;
+}
+
+/* Cria a caixa exibida após a confirmação da reserva. */
+.reserva-concluida {
+  max-width: 700px;
+  padding: 50px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: var(--cor-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: 28px;
+  box-shadow: var(--sombra-card);
+}
+
+/* Cria o círculo com o símbolo de confirmação. */
+.icone-confirmacao {
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 24px;
+  color: var(--cor-branco);
+  font-size: 32px;
+  font-weight: 600;
+  background-color: var(--cor-sucesso);
+  border-radius: 50%;
+}
+
+/* Título da confirmação. */
+.reserva-concluida h2 {
+  margin-bottom: 18px;
+  font-family: var(--fonte-titulo);
+  font-size: 36px;
+}
+
+/* Textos da confirmação. */
+.reserva-concluida p:not(.etiqueta) {
+  margin-bottom: 14px;
+  color: var(--cor-texto-suave);
+  font-size: 14px;
+  line-height: 24px;
+}
+
+/* Link para voltar aos roteiros. */
+.reserva-concluida a,
+.nao-encontrado a {
+  display: inline-block;
+  padding: 13px 22px;
+  margin-top: 14px;
+  color: var(--cor-branco);
+  font-weight: 600;
+  text-decoration: none;
+  background-color: var(--cor-vermelho-japao);
+  border-radius: 999px;
+}
+
+/* Centraliza a mensagem apresentada quando o roteiro não existe. */
+.nao-encontrado {
+  padding: 100px 5%;
+  text-align: center;
+}
+
+/* título da mensagem de roteiro não encontrado. */
+.nao-encontrado h1 {
+  font-family: var(--fonte-titulo);
+  font-size: 42px;
+}
+
+/* ==== Responsividade ==== */
+
+/* Ajusta a página para tablets e telas intermediárias. */
+@media (width <= 900px) {
+  /* Coloca o formulário e o resumo em uma única coluna. */
+  .conteudo-reserva {
+    grid-template-columns: 1fr;
+  }
+
+  /* Remove a posição fixa do resumo em telas menores. */
+  .resumo-reserva {
+    position: static;
+  }
+}
+
+/* Ajusta os elementos para celulares. */
+@media (width <= 550px) {
+  /* Diminui o espaçamento geral da página. */
+  .pagina-reserva {
+    padding: 34px 0 60px;
+  }
+
+  /* Diminui os espaços internos das caixas. */
+  .formulario,
+  .resumo-reserva,
+  .reserva-concluida {
+    padding: 24px;
+  }
+
+  /* Coloca CPF e telefone um abaixo do outro. */
+  .campos-lado-a-lado {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  /* Reduz o título principal em celulares. */
+  .titulo-pagina h1 {
+    font-size: 42px;
+  }
+
+  /* Reduz o título da confirmação em celulares. */
+  .reserva-concluida h2 {
+    font-size: 30px;
+  }
+}

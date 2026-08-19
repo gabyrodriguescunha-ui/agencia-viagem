@@ -1,0 +1,150 @@
+:host {
+  display: block;
+}
+
+.cabecalho {
+  position: relative;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+
+  width: 100%;
+  min-height: 82px;
+  padding: 14px 6%;
+
+  background-color: var(--cor-fundo-cabecalho);
+  border-bottom: 1px solid var(--cor-borda);
+  backdrop-filter: blur(var(--desfoque-cabecalho));
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+
+.marca-sol {
+  width: 42px;
+  height: 42px;
+
+  background-color: var(--cor-vermelho-japao);
+  border-radius: 50%;
+  box-shadow: var(--sombra-sol);
+}
+
+.marca-texto {
+  display: grid;
+  gap: 1px;
+}
+
+.marca-texto strong {
+  font-family: var(--fonte-titulo);
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.marca-texto small {
+  color: var(--cor-texto-suave);
+  font-size: 11px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.navegacao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.navegacao a {
+  position: relative;
+
+  padding: 8px 0;
+
+  color: var(--cor-texto);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.navegacao a::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 2px;
+
+  content: "";
+  background-color: var(--cor-vermelho-japao);
+  transform: scaleX(0);
+  transition: transform 200ms ease;
+}
+
+.navegacao a:hover::after,
+.navegacao a.link-ativo::after {
+  transform: scaleX(1);
+}
+
+.botao-admin {
+  padding: 11px 18px;
+
+  color: var(--cor-branco);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+
+  background-color: var(--cor-vermelho-japao);
+  border: 1px solid var(--cor-vermelho-japao);
+  border-radius: 999px;
+
+  transition:
+    color 200ms ease,
+    background-color 200ms ease;
+}
+
+.botao-admin:hover {
+  color: var(--cor-vermelho-japao);
+  background-color: transparent;
+}
+
+/* ==== Responsividade ==== */
+
+@media (width <= 850px) {
+  .cabecalho {
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 14px 24px;
+  }
+
+  .navegacao {
+    order: 3;
+    width: 100%;
+    gap: 22px;
+  }
+}
+
+@media (width <= 600px) {
+  .marca-texto small,
+  .botao-admin {
+    display: none;
+  }
+
+  .navegacao {
+    justify-content: flex-start;
+    gap: 18px;
+    overflow-x: auto;
+  }
+
+  .navegacao a {
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,284 @@
+/* Organiza o menu e o conteúdo da página lado a lado. */
+.layout-admin {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--cor-fundo);
+}
+
+/* Define o espaçamento interno da página. */
+.pagina-funcionarios {
+  flex: 1;
+  padding: 40px;
+  overflow: hidden;
+}
+
+/* Organiza o título e o botão de cadastro. */
+.cabecalho-pagina {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+/* Título principal. */
+.cabecalho-pagina h1 {
+  margin: 4px 0 8px;
+  color: var(--cor-texto);
+  font-family: var(--fonte-titulo);
+  font-size: 32px;
+}
+
+/* Textos auxiliares. */
+.cabecalho-pagina p {
+  margin: 0;
+  color: var(--cor-texto-suave);
+}
+
+/* Destaca o texto acima do título. */
+.cabecalho-pagina .etiqueta {
+  color: var(--cor-vermelho-japao);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Configura o formato geral dos botões principais. */
+.botao-principal,
+.botao-secundario {
+  min-height: 44px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 10px;
+  font-family: var(--fonte-texto);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Destaca os botões de confirmação. */
+.botao-principal {
+  color: var(--cor-branco);
+  background-color: var(--cor-vermelho-japao);
+}
+
+/* Botão utilizado para cancelar. */
+.botao-secundario {
+  color: var(--cor-texto);
+  background-color: var(--cor-rosa-claro);
+}
+
+/* Cria os painéis do formulário e da tabela. */
+.painel-formulario,
+.painel-tabela {
+  margin-bottom: 24px;
+  padding: 24px;
+  background-color: var(--cor-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: 16px;
+  box-shadow: var(--sombra-card);
+}
+
+/* Título do formulário. */
+.painel-formulario h2 {
+  margin: 0 0 20px;
+
+  color: var(--cor-texto);
+  font-size: 22px;
+}
+
+/* Organiza os campos em duas colunas. */
+form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* Posiciona o texto acima de cada campo. */
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: var(--cor-texto);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Campos do formulário. */
+input,
+select {
+  width: 100%;
+  padding: 12px 14px;
+  color: var(--cor-texto);
+  background-color: var(--cor-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: var(--fonte-texto);
+  font-size: 15px;
+}
+
+/* Destaca o campo selecionado. */
+input:focus,
+select:focus {
+  border-color: var(--cor-vermelho-japao);
+  outline: 2px solid var(--cor-rosa-sakura);
+}
+
+/* Organiza o campo que controla a situação do funcionário. */
+.campo-situacao {
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+}
+
+/* Mantém o checkbox em seu tamanho natural. */
+.campo-situacao input {
+  width: 18px;
+  height: 18px;
+}
+
+/* Posiciona os botões do formulário à direita. */
+.acoes-formulario {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Permite rolagem horizontal em telas menores. */
+.tabela-responsiva {
+  overflow-x: auto;
+}
+
+/* Define o tamanho e a estrutura da tabela. */
+table {
+  width: 100%;
+  min-width: 760px;
+
+  border-collapse: collapse;
+}
+
+/* Alinha todas as células da tabela. */
+th,
+td {
+  padding: 15px 12px;
+  border-bottom: 1px solid var(--cor-borda);
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Títulos das colunas. */
+th {
+  color: var(--cor-texto-suave);
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+/* Coloca o e-mail abaixo do nome. */
+td small {
+  display: block;
+  margin-top: 4px;
+
+  color: var(--cor-texto-suave);
+}
+
+/* Botão que representa a situação. */
+.botao-situacao {
+  padding: 7px 12px;
+  border: 0;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Cor utilizada para funcionários ativos. */
+.botao-situacao.ativo {
+  color: var(--cor-sucesso);
+  background-color: var(--cor-rosa-claro);
+}
+
+/* Cor utilizada para funcionários inativos. */
+.botao-situacao.inativo {
+  color: var(--cor-erro);
+  background-color: var(--cor-rosa-claro);
+}
+
+/* Mantém os botões da tabela na mesma linha. */
+.acoes-tabela {
+  white-space: nowrap;
+}
+
+/* Botões de editar e excluir. */
+.acoes-tabela button {
+  padding: 8px 12px;
+  background-color: var(--cor-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: 7px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+/* Cria espaço entre os botões da tabela. */
+.acoes-tabela button + button {
+  margin-left: 8px;
+}
+
+/* Destaca o botão de exclusão. */
+.acoes-tabela .excluir {
+  color: var(--cor-erro);
+}
+
+/* Centraliza a mensagem exibida quando não existem funcionários. */
+.estado-vazio {
+  padding: 48px 20px;
+  color: var(--cor-texto-suave);
+  text-align: center;
+}
+
+/* Símbolo apresentado na mensagem vazia. */
+.estado-vazio span {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 16px;
+  color: var(--cor-branco);
+  background-color: var(--cor-vermelho-japao);
+  border-radius: 50%;
+  font-size: 23px;
+}
+
+/* Título da mensagem vazia. */
+.estado-vazio h2 {
+  margin: 0 0 8px;
+
+  color: var(--cor-texto);
+  font-size: 21px;
+}
+
+/* Remove a margem do último texto. */
+.estado-vazio p {
+  margin: 0;
+}
+
+/*==== Responsividade ==== */
+
+/* Adapta a página para celulares. */
+@media (max-width: 700px) {
+  .layout-admin {
+    display: block;
+  }
+
+  .pagina-funcionarios {
+    padding: 24px 16px;
+  }
+
+  .cabecalho-pagina {
+    flex-direction: column;
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+}

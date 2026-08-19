@@ -1,0 +1,392 @@
+<app-cabecalho />
+
+<!-- Verifica se o roteiro informado na URL foi encontrado. -->
+@if (roteiro) {
+  <!-- Conteúdo principal da página de reserva. -->
+  <main class="pagina-reserva">
+    <!-- Título e explicação inicial da página. -->
+    <div class="titulo-pagina">
+      <p class="etiqueta">Sua próxima viagem</p>
+
+      <h1>Faça sua reserva</h1>
+
+      <p>
+        Preencha os dados para reservar seu lugar no Japão.
+      </p>
+    </div>
+
+    <!-- Verifica se a reserva ainda não foi confirmada. -->
+    @if (!reservaConfirmada) {
+      <!-- Divide a página entre formulário e resumo. -->
+      <div class="conteudo-reserva">
+        <form
+          class="formulario"
+          [formGroup]="reservaForm"
+          (ngSubmit)="confirmarReserva()"
+        >
+          <h2>Dados da reserva</h2>
+
+          <!-- Campo utilizado para selecionar uma data. -->
+          <div class="campo">
+            <label for="data">Data da viagem</label>
+            
+            <select id="data" formControlName="data">
+              <option value="">Selecione uma data</option>
+
+              <!-- Percorre as datas do roteiro selecionado. -->
+              @for (data of roteiro.datas; track data) {
+                <option [value]="data">
+                  {{ data }}
+                </option>
+              }
+            </select>
+
+            @if (
+              reservaForm.controls.data.touched &&
+              reservaForm.controls.data.invalid
+            ) {
+              <small class="erro">
+                Selecione uma data.
+              </small>
+            }
+          </div>
+
+          <!-- Campo da quantidade de viajantes. -->
+          <div class="campo">
+            <label for="viajantes">
+              Quantidade de viajantes
+            </label>
+
+            <!--
+              Mínimo : 1pessoa.
+              Máximo: utiliza a quantidade de vagas do roteiro.
+            -->
+            <input
+              id="viajantes"
+              type="number"
+              min="1"
+              [max]="roteiro.vagas"
+              formControlName="viajantes"
+            />
+
+            <!-- Exibe o erro da quantidade de viajantes. -->
+            @if (
+              reservaForm.controls.viajantes.touched &&
+              reservaForm.controls.viajantes.invalid
+            ) {
+              <small class="erro">
+                Informe uma quantidade entre 1 e
+                {{ roteiro.vagas }}.
+              </small>
+            }
+          </div>
+
+          <!-- Campo utilizado para preencher o nome completo. -->
+          <div class="campo">
+            <label for="nome">Nome completo</label>
+
+            <input
+              id="nome"
+              type="text"
+              placeholder="Digite seu nome completo"
+              formControlName="nome"
+            />
+
+            <!-- Exibe a validação do nome. -->
+            @if (
+              reservaForm.controls.nome.touched &&
+              reservaForm.controls.nome.invalid
+            ) {
+              <small class="erro">
+                Digite um nome com pelo menos 3 caracteres.
+              </small>
+            }
+          </div>
+
+          <!-- Coloca os campos de CPF e telefone lado a lado. -->
+          <div class="campos-lado-a-lado">
+            <div class="campo">
+              <label for="cpf">CPF</label>
+
+              <input
+                id="cpf"
+                type="text"
+                inputmode="numeric"
+                maxlength="11"
+                placeholder="Somente números"
+                formControlName="cpf"
+              />
+
+              <!-- Exibe a validação do CPF. -->
+              @if (
+                reservaForm.controls.cpf.touched &&
+                reservaForm.controls.cpf.invalid
+              ) {
+                <small class="erro">
+                  Digite os 11 números do CPF.
+                </small>
+              }
+            </div>
+
+            <!-- Campo utilizado para preencher o telefone. -->
+            <div class="campo">
+              <label for="telefone">Telefone</label>
+
+              <input
+                id="telefone"
+                type="tel"
+                inputmode="numeric"
+                maxlength="11"
+                placeholder="Somente números"
+                formControlName="telefone"
+              />
+
+              <!-- Exibe a validação do telefone. -->
+              @if (
+                reservaForm.controls.telefone.touched &&
+                reservaForm.controls.telefone.invalid
+              ) {
+                <small class="erro">
+                  Digite um telefone válido.
+                </small>
+              }
+            </div>
+          </div>
+
+          <!-- Campo utilizado para preencher o e-mail. -->
+          <div class="campo">
+            <label for="email">E-mail</label>
+
+            <input
+              id="email"
+              type="email"
+              placeholder="nome@exemplo.com"
+              formControlName="email"
+            />
+
+            <!-- Exibe a validação do e-mail. -->
+            @if (
+              reservaForm.controls.email.touched &&
+              reservaForm.controls.email.invalid
+            ) {
+              <small class="erro">
+                Digite um e-mail válido.
+              </small>
+            }
+          </div>
+
+          <!-- Área utilizada para escolher a forma de pagamento. -->
+          <fieldset class="pagamento">
+            <legend>Forma de pagamento</legend>
+
+            <!-- Organiza as opções de pagamento. -->
+            <div class="opcoes-pagamento">
+              <!-- Opção de pagamento por Pix. -->
+              <label class="opcao-pagamento">
+                <input
+                  type="radio"
+                  value="pix"
+                  formControlName="formaPagamento"
+                />
+
+                <span>
+                  <strong>Pix</strong>
+                  <small>Pagamento à vista</small>
+                </span>
+              </label>
+
+              <!-- Opção de pagamento com cartão. -->
+              <label class="opcao-pagamento">
+                <input
+                  type="radio"
+                  value="cartao"
+                  formControlName="formaPagamento"
+                />
+
+                <span>
+                  <strong>Cartão de crédito</strong>
+                  <small>Parcelamento em até 12 vezes</small>
+                </span>
+              </label>
+
+              <!-- Opção de pagamento por boleto. -->
+              <label class="opcao-pagamento">
+                <input
+                  type="radio"
+                  value="boleto"
+                  formControlName="formaPagamento"
+                />
+
+                <span>
+                  <strong>Boleto</strong>
+                  <small>Pagamento à vista</small>
+                </span>
+              </label>
+            </div>
+
+            <!-- Exibe o erro quando nenhuma opção foi escolhida. -->
+            @if (
+              reservaForm.controls.formaPagamento.touched &&
+              reservaForm.controls.formaPagamento.invalid
+            ) {
+              <small class="erro">
+                Escolha uma forma de pagamento.
+              </small>
+            }
+          </fieldset>
+
+          <!--
+            O parcelamento aparece somente quando a forma
+            de pagamento selecionada é cartão.
+          -->
+          @if (
+            reservaForm.controls.formaPagamento.value === "cartao"
+          ) {
+            <div class="campo">
+              <label for="parcelas">
+                Quantidade de parcelas
+              </label>
+
+              <!-- Permite selecionar entre 1 e 12 parcelas. -->
+              <select
+                id="parcelas"
+                formControlName="parcelas"
+              >
+                <!-- Percorre as opções declaradas no TypeScript. -->
+                @for (
+                  parcela of opcoesParcelas;
+                  track parcela
+                ) {
+                  <option [ngValue]="parcela">
+                    {{ parcela }}x de
+                    {{ formatarPreco(valorTotal / parcela) }}
+                    sem juros
+                  </option>
+                }
+              </select>
+
+              <!-- Mostra o valor da parcela escolhida. -->
+              <small class="informacao-parcela">
+                Pagamento em
+                {{ reservaForm.controls.parcelas.value }}x de
+                {{ formatarPreco(valorParcela) }} sem juros.
+              </small>
+            </div>
+          }
+
+          <!-- Envia o formulário para o método confirmarReserva. -->
+          <button type="submit" class="botao-confirmar">
+            Confirmar reserva
+          </button>
+        </form>
+
+        <!-- Apresenta o resumo do roteiro e do valor. -->
+        <aside class="resumo-reserva">
+          <p class="etiqueta">Roteiro selecionado</p>
+
+          <h2>{{ roteiro.nome }}</h2>
+          <p>{{ roteiro.cidade }}</p>
+
+          <!-- Exibe o preço individual do pacote. -->
+          <div class="linha-resumo">
+            <span>Preço por pessoa</span>
+
+            <strong>
+              {{ formatarPreco(roteiro.preco) }}
+            </strong>
+          </div>
+
+          <!-- Exibe a quantidade preenchida no formulário. -->
+          <div class="linha-resumo">
+            <span>Viajantes</span>
+
+            <strong>
+              {{ reservaForm.controls.viajantes.value }}
+            </strong>
+          </div>
+
+          <!-- Exibe a forma de pagamento selecionada. -->
+          @if (reservaForm.controls.formaPagamento.value) {
+            <div class="linha-resumo">
+              <span>Forma de pagamento</span>
+
+              <!-- O nome da opção é preparado no TypeScript. -->
+              <strong>{{ nomeFormaPagamento }}</strong>
+            </div>
+          }
+
+          <!-- Exibe o parcelamento somente para cartão. -->
+          @if (
+            reservaForm.controls.formaPagamento.value === "cartao"
+          ) {
+            <div class="linha-resumo">
+              <span>Parcelamento</span>
+
+              <strong>
+                {{ reservaForm.controls.parcelas.value }}x de
+                {{ formatarPreco(valorParcela) }}
+              </strong>
+            </div>
+          }
+
+          <!-- Exibe o preço multiplicado pela quantidade. -->
+          <div class="total">
+            <span>Valor total</span>
+
+            <strong>
+              {{ formatarPreco(valorTotal) }}
+            </strong>
+          </div>
+
+          <!-- Aviso explicando o objetivo do formulário. -->
+          <small>
+            Esta atividade representa uma solicitação de
+            reserva. Nenhum pagamento será realizado.
+          </small>
+        </aside>
+      </div>
+    } @else {
+
+      <section class="reserva-concluida">
+        <!-- Símbolo visual de confirmação. -->
+        <span class="icone-confirmacao">✓</span>
+
+        <p class="etiqueta">Reserva realizada</p>
+
+        <h2>Sua viagem está reservada!</h2>
+
+        <!-- Exibe o roteiro que foi reservado. -->
+        <p>
+          Recebemos sua solicitação para o roteiro
+          <strong>{{ roteiro.nome }}</strong>.
+        </p>
+
+        <!-- Exibe o valor total da reserva. -->
+        <p>
+          Valor total:
+          <strong>{{ formatarPreco(valorTotal) }}</strong>
+        </p>
+
+        <!-- Exibe a forma de pagamento escolhida. -->
+        <p>
+          Forma de pagamento:
+          <strong>{{ nomeFormaPagamento }}</strong>
+        </p>
+
+        <!-- Link que retorna para a listagem de roteiros. -->
+        <a routerLink="/roteiros">
+          Ver outros roteiros
+        </a>
+      </section>
+    }
+  </main>
+} @else {
+  <!-- Mensagem de roteiro inexistente. -->
+  <main class="nao-encontrado">
+    <h1>Roteiro não encontrado</h1>
+
+    <a routerLink="/roteiros">
+      Voltar aos roteiros
+    </a>
+  </main>
+}

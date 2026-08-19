@@ -1,0 +1,92 @@
+<!-- Divide a tela entre o menu e o conteúdo financeiro. -->
+<div class="layout-admin">
+  <!-- Menu compartilhado pelas páginas administrativas. -->
+  <app-menu-admin />
+
+  <!-- Conteúdo principal do financeiro. -->
+  <main class="pagina-financeiro">
+    <header class="titulo-pagina">
+      <p class="etiqueta">Área administrativa</p>
+      <h1>Financeiro</h1>
+      <p>Acompanhe os valores recebidos, pendentes e cancelados.</p>
+    </header>
+
+    <!-- Indicadores calculados a partir das reservas. -->
+    <section class="indicadores" aria-label="Resumo financeiro">
+      <article class="indicador indicador-recebido">
+        <span>Receita confirmada</span>
+        <strong>{{ formatarPreco(totalRecebido) }}</strong>
+        <small>{{ reservasConfirmadas.length }} reserva(s) confirmada(s)</small>
+      </article>
+
+      <article class="indicador indicador-pendente">
+        <span>Valores pendentes</span>
+        <strong>{{ formatarPreco(totalPendente) }}</strong>
+        <small>Aguardando confirmação</small>
+      </article>
+
+      <article class="indicador indicador-medio">
+        <span>Ticket médio</span>
+        <strong>{{ formatarPreco(ticketMedio) }}</strong>
+        <small>Média das reservas confirmadas</small>
+      </article>
+
+      <article class="indicador indicador-cancelado">
+        <span>Valores cancelados</span>
+        <strong>{{ formatarPreco(totalCancelado) }}</strong>
+        <small>Não entram na receita</small>
+      </article>
+    </section>
+
+    <!-- Tabela que apresenta a origem da receita confirmada. -->
+    <section class="painel-movimentacoes">
+      <header class="titulo-secao">
+        <div>
+          <h2>Receitas confirmadas</h2>
+          <p>Reservas consideradas no total recebido.</p>
+        </div>
+      </header>
+
+      @if (reservasConfirmadas.length > 0) {
+        <div class="tabela-responsiva">
+          <table>
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Roteiro</th>
+                <th>Pagamento</th>
+                <th>Confirmação</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @for (reserva of reservasConfirmadas; track reserva.id) {
+                <tr>
+                  <td>
+                    <strong>{{ reserva.nome }}</strong>
+                    <small>{{ reserva.email }}</small>
+                  </td>
+                  <td>
+                    <strong>{{ reserva.roteiro.nome }}</strong>
+                    <small>{{ reserva.viajantes }} viajante(s)</small>
+                  </td>
+                  <td>{{ formatarPagamento(reserva) }}</td>
+                  <td>{{ formatarData(reserva.criadaEm) }}</td>
+                  <td class="valor-recebido">{{ formatarPreco(reserva.valorTotal) }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <!-- Aparece enquanto ainda não existem reservas confirmadas. -->
+        <div class="estado-vazio">
+          <span>¥</span>
+          <h2>Nenhuma receita confirmada</h2>
+          <p>Quando uma reserva for confirmada, ela aparecerá nesta tabela.</p>
+        </div>
+      }
+    </section>
+  </main>
+</div>

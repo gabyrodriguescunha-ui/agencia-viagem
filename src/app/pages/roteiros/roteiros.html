@@ -1,0 +1,16 @@
+<app-cabecalho />
+
+<main class="pagina-roteiros">
+  <header class="apresentacao">
+    <p class="etiqueta">Experiências no Japão</p>
+    <h1>Escolha o seu próximo roteiro</h1>
+    <p>Cenários de animes, lojas, parques e experiências culturais reunidos em viagens planejadas para fãs da cultura japonesa.</p>
+  </header>
+
+  <!-- Cria um card para cada roteiro da lista. -->
+  <section class="grade-roteiros" aria-label="Roteiros disponíveis">
+    @for (roteiro of roteiros(); track roteiro.id) {
+      <app-card-roteiro [roteiro]="roteiro" />
+    }
+  </section>
+</main>

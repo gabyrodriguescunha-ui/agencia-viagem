@@ -1,0 +1,259 @@
+/* Faz o componente ocupar seu próprio espaço na página. */
+:host {
+  display: block;
+}
+
+/* Banner principal baseado na estrutura do Travel. */
+.banner {
+  position: relative;
+  /* Cria uma camada de posicionamento independente. */
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Esconde elementos decorativos que ultrapassarem o banner. */
+  overflow: hidden;
+  color: var(--cor-branco);
+  background:
+    linear-gradient(
+      90deg,
+      rgb(20 14 17 / 85%) 0%,
+      rgb(20 14 17 / 60%) 42%,
+      rgb(20 14 17 / 20%) 100%
+    ),
+    url("/images/banner-japao.png") center / cover no-repeat;
+}
+
+.banner::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  background: linear-gradient(
+    180deg,
+    transparent 55%,
+    rgb(18 12 15 / 72%) 100%
+  );
+}
+
+app-cabecalho,
+.conteudo-banner,
+.roteiros-destaque {
+  position: relative;
+  /* Mantém os textos, botões e links acima das pétalas. */
+  z-index: 5;
+}
+
+/* Círculo decorativo inspirado no sol da bandeira japonesa. 
+.sol-japones {
+  position: absolute;
+  z-index: -1;
+  top: 125px;
+  right: 9%;
+  width: 310px;
+  height: 310px;
+  background-color: rgb(188 0 45 / 48%);
+  border-radius: 50%;
+  filter: blur(1px);
+} */
+
+/* Área dos textos e do botão principal. */
+.conteudo-banner {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  width: min(700px, 88%);
+  padding: 70px 0 170px;
+  margin-left: 7%;
+}
+
+/* Pequeno texto apresentado acima do título. */
+.subtitulo {
+  margin: 0 0 14px;
+
+  color: var(--cor-rosa-sakura);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Título principal do banner. */
+.conteudo-banner h1 {
+  max-width: 680px;
+  margin: 0;
+
+  font-family: var(--fonte-titulo);
+  font-size: clamp(50px, 7vw, 98px);
+  font-weight: 700;
+  line-height: 0.96;
+  text-transform: uppercase;
+}
+
+/* Parte rosa do título principal. */
+.conteudo-banner h1 span {
+  display: block;
+  color: var(--cor-rosa-sakura);
+}
+
+/* Texto explicativo abaixo do título. */
+.descricao {
+  max-width: 580px;
+  margin: 28px 0 34px;
+
+  color: rgb(255 255 255 / 86%);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* Botão que leva o usuário até a página de roteiros. */
+.botao-roteiros {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 14px 24px;
+
+  color: var(--cor-branco);
+  font-weight: 600;
+  text-decoration: none;
+
+  background-color: var(--cor-vermelho-japao);
+  border: 1px solid var(--cor-vermelho-japao);
+  border-radius: 999px;
+
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    transform 200ms ease;
+}
+
+/* Efeito apresentado ao passar o mouse sobre o botão. */
+.botao-roteiros:hover {
+  color: var(--cor-vermelho-japao);
+  background-color: var(--cor-branco);
+  transform: translateY(-2px);
+}
+
+/* Container dos três roteiros no final do banner. */
+.roteiros-destaque {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  margin: 0 5%;
+  border-top: 1px solid rgb(255 255 255 / 35%);
+}
+
+/* Card individual de cada roteiro. */
+.roteiro-destaque {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+
+  min-height: 130px;
+  padding: 22px;
+
+  color: var(--cor-branco);
+  text-decoration: none;
+
+  background-color: rgb(30 18 23 / 42%);
+  border-right: 1px solid rgb(255 255 255 / 30%);
+  backdrop-filter: blur(7px);
+
+  transition: background-color 200ms ease;
+}
+
+/* Retira a borda direita do último roteiro. */
+.roteiro-destaque:last-child {
+  border-right: 0;
+}
+
+/* Destaca o roteiro quando o usuário passa o mouse. */
+.roteiro-destaque:hover {
+  background-color: rgb(188 0 45 / 65%);
+}
+
+/* Número apresentado no início do roteiro. */
+.numero {
+  align-self: start;
+
+  color: var(--cor-rosa-sakura);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Nome do roteiro. */
+.roteiro-destaque h2 {
+  margin: 0 0 7px;
+
+  font-family: var(--fonte-titulo);
+  font-size: 21px;
+}
+
+/* Descrição resumida do roteiro. */
+.roteiro-destaque p {
+  margin: 0;
+  color: rgb(255 255 255 / 72%);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Seta apresentada no final de cada roteiro. */
+.seta {
+  font-size: 22px;
+}
+
+/* ==== Responsividade ==== */
+
+/* Ajustes para tablets e telas menores. */
+@media (width <= 900px) {
+  /* Abre espaço para os três roteiros empilhados. */
+  .conteudo-banner {
+    padding-bottom: 350px;
+  }
+
+  /* Coloca os roteiros um abaixo do outro. */
+  .roteiros-destaque {
+    grid-template-columns: 1fr;
+  }
+
+  .roteiro-destaque {
+    min-height: 105px;
+
+    border-right: 0;
+    border-bottom: 1px solid rgb(255 255 255 / 25%);
+  }
+
+  /* Reduz o tamanho do sol decorativo. */
+  .sol-japones {
+    width: 230px;
+    height: 230px;
+  }
+}
+
+/* Ajustes específicos para celulares. */
+@media (width <= 600px) {
+  .conteudo-banner {
+    width: auto;
+    padding-top: 50px;
+    margin: 0 24px;
+  }
+
+  .conteudo-banner h1 {
+    font-size: 44px;
+  }
+
+  /* Retira as margens laterais dos roteiros. */
+  .roteiros-destaque {
+    margin: 0;
+  }
+}

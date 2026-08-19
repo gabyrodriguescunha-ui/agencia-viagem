@@ -1,0 +1,83 @@
+<app-cabecalho />
+
+@if (roteiro) {
+  <main class="pagina-detalhes">
+    <!-- Apresentação principal do roteiro. -->
+    <section class="apresentacao-roteiro">
+      <img [src]="roteiro.imagem" [alt]="roteiro.nome" />
+
+      <div class="resumo">
+        <p class="localizacao">{{ roteiro.cidade }}</p>
+        <h1>{{ roteiro.nome }}</h1>
+        <p class="descricao">{{ roteiro.descricao }}</p>
+
+        <div class="dados-rapidos">
+          <span>{{ roteiro.duracao }}</span>
+          <span>{{ roteiro.vagas }} vagas disponíveis</span>
+        </div>
+
+        <div class="preco">
+          <small>A partir de</small>
+          <strong>{{ formatarPreco(roteiro.preco) }}</strong>
+          <span>por pessoa</span>
+        </div>
+
+        <a class="botao-reservar" [routerLink]="['/reserva', roteiro.id]">Reservar roteiro →</a>
+      </div>
+    </section>
+
+    <div class="conteudo-detalhes">
+      <section class="bloco">
+        <p class="etiqueta">Programação</p>
+        <h2>Itinerário da viagem</h2>
+
+        <div class="linha-tempo">
+          @for (item of roteiro.itinerario; track item.dia) {
+            <article class="dia">
+              <span>{{ item.dia }}</span>
+              <div>
+                <h3>{{ item.titulo }}</h3>
+                <p>{{ item.descricao }}</p>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+
+      <aside>
+        <section class="bloco bloco-lateral">
+          <h2>Datas disponíveis</h2>
+          @for (data of roteiro.datas; track data) {
+            <p class="data">{{ data }}</p>
+          }
+        </section>
+
+        <section class="bloco bloco-lateral">
+          <h2>O que está incluído</h2>
+          <ul>
+            @for (item of roteiro.incluidos; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <!-- O elemento details cria o accordion sem JavaScript. -->
+    <section class="bloco perguntas">
+      <p class="etiqueta">Dúvidas</p>
+      <h2>Perguntas frequentes</h2>
+      @for (item of roteiro.perguntas; track item.pergunta) {
+        <details>
+          <summary>{{ item.pergunta }}</summary>
+          <p>{{ item.resposta }}</p>
+        </details>
+      }
+    </section>
+  </main>
+} @else {
+  <main class="nao-encontrado">
+    <h1>Roteiro não encontrado</h1>
+    <a routerLink="/roteiros">Voltar aos roteiros</a>
+  </main>
+}

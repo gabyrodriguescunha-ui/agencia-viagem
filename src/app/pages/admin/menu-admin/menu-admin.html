@@ -1,0 +1,33 @@
+<!-- Menu lateral utilizado somente na área administrativa. -->
+<aside class="menu-admin">
+  <!-- Identificação da agência e link para o dashboard. -->
+  <a class="marca-admin" routerLink="/admin/dashboard">
+    <span class="marca-sol"></span>
+    <span>
+      <strong>Sakura Trip</strong>
+      <small>Administração</small>
+    </span>
+  </a>
+
+  <!-- Links para as páginas administrativas. -->
+  <nav aria-label="Navegação administrativa">
+    <a routerLink="/admin/dashboard" routerLinkActive="link-ativo">
+      Dashboard
+    </a>
+    <a routerLink="/admin/reservas" routerLinkActive="link-ativo">
+      Reservas
+    </a>
+    <a routerLink="/admin/roteiros" routerLinkActive="link-ativo">
+      Roteiros
+    </a>
+    <a routerLink="/admin/financeiro" routerLinkActive="link-ativo">
+      Financeiro
+    </a>
+    <a routerLink="/admin/funcionarios" routerLinkActive="link-ativo">
+      Funcionários
+    </a>
+  </nav>
+
+  <!-- Retorna para a página pública da agência. -->
+  <a class="voltar-site" routerLink="/">← Voltar ao site</a>
+</aside>

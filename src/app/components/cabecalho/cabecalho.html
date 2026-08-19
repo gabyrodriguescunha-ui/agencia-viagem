@@ -1,0 +1,54 @@
+<!-- Cabeçalho principal do site. -->
+<header class="cabecalho">
+  <!-- Marca que leva o usuário para a página inicial. -->
+  <a
+    class="marca"
+    routerLink="/"
+    aria-label="Ir para a página inicial"
+  >
+    <!-- Círculo inspirado no sol da bandeira japonesa. -->
+    <span class="marca-sol"></span>
+
+    <!-- Nome e descrição da agência. -->
+    <span class="marca-texto">
+      <strong>Sakura Trip</strong>
+      <small>Viagens pelo Japão</small>
+    </span>
+  </a>
+
+  <!-- Links principais de navegação. -->
+  <nav
+    class="navegacao"
+    aria-label="Navegação principal"
+  >
+    <!-- Link para a página inicial. -->
+    <a
+      routerLink="/"
+      routerLinkActive="link-ativo"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Início
+    </a>
+
+    <!-- Link para a página de roteiros. -->
+    <a
+      routerLink="/roteiros"
+      routerLinkActive="link-ativo"
+    >
+      Roteiros
+    </a>
+
+    <!-- Link para a página Sobre nós. -->
+    <a
+      routerLink="/sobre"
+      routerLinkActive="link-ativo"
+    >
+      Sobre nós
+    </a>
+  </nav>
+
+  <!-- Link para a área administrativa. -->
+  <a class="botao-admin" routerLink="/admin">
+    Área administrativa
+  </a>
+</header>

@@ -1,0 +1,80 @@
+<!-- Conteúdo principal da página. -->
+<main>
+  <!-- Banner baseado na estrutura visual do Travel. -->
+  <section class="banner">
+    
+ <!-- Adiciona a animação Cherry Blossom Falling ao banner. -->
+  <app-petalas />
+
+<!-- Cabeçalho inserido dentro do banner. -->
+    <app-cabecalho />
+
+    <!-- Elemento decorativo que representa o sol do Japão. -->
+    <div class="sol-japones" aria-hidden="true"></div>
+
+    <!-- Área que contém os textos e o botão principal. -->
+    <div class="conteudo-banner">
+      <!-- Pequeno texto apresentado acima do título. -->
+      <p class="subtitulo">Bem-vindo ao Japão</p>
+
+      <!-- Título principal da agência. -->
+      <h1>
+        Viva o Japão dos seus
+        <span>animes favoritos</span>
+      </h1>
+
+      <!-- Breve explicação sobre os serviços da agência. -->
+      <p class="descricao">
+        Conheça cenários que inspiraram grandes histórias, visite atrações temáticas e explore
+        as melhores lojas de mangás e colecionáveis.
+      </p>
+
+      <!-- Navega para a página que contém todos os roteiros. -->
+      <a class="botao-roteiros" routerLink="/roteiros">
+        Explorar roteiros
+
+        <!-- A seta é apenas decorativa. -->
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <!-- Área com os três roteiros apresentados no final do banner. -->
+    <div class="roteiros-destaque">
+      <!-- Primeiro roteiro. -->
+      <a class="roteiro-destaque" routerLink="/roteiros/1">
+        <span class="numero">01</span>
+
+        <div>
+          <h2>Tóquio Otaku</h2>
+          <p>Akihabara, cafés temáticos e lojas de colecionáveis.</p>
+        </div>
+
+        <span class="seta" aria-hidden="true">↗</span>
+      </a>
+
+      <!-- Segundo roteiro. -->
+      <a class="roteiro-destaque" routerLink="/roteiros/2">
+        <span class="numero">02</span>
+
+        <div>
+          <h2>Japão em Cena</h2>
+          <p>Locais reais que inspiraram cenários de animes.</p>
+        </div>
+
+        <span class="seta" aria-hidden="true">↗</span>
+      </a>
+
+      <!-- Terceiro roteiro. -->
+      <a class="roteiro-destaque" routerLink="/roteiros/3">
+        <span class="numero">03</span>
+
+        <div>
+          <h2>Mundos Temáticos</h2>
+          <p>Parques, museus e experiências inesquecíveis.</p>
+        </div>
+
+        <span class="seta" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+</main>

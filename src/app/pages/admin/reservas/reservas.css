@@ -1,0 +1,172 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: var(--cor-fundo);
+}
+
+/* Divide a tela entre o menu lateral e o conteúdo. */
+.layout-admin {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+/* Define os espaços da página de reservas. */
+.pagina-reservas {
+  min-width: 0;
+  padding: 48px;
+}
+
+/* Separa o título da tabela. */
+.titulo-pagina {
+  margin-bottom: 30px;
+}
+
+/* Identificação acima do título. */
+.etiqueta {
+  margin: 0 0 8px;
+  color: var(--cor-vermelho-japao);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Título principal. */
+.titulo-pagina h1 {
+  margin: 0 0 10px;
+  font-family: var(--fonte-titulo);
+  font-size: 40px;
+}
+
+/* Descrição da página. */
+.titulo-pagina > p:last-child {
+  margin: 0;
+  color: var(--cor-texto-suave);
+  font-size: 13px;
+}
+
+/* Cria a caixa da tabela e permite rolagem horizontal. */
+.tabela-container {
+  overflow-x: auto;
+  background-color: var(--cor-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: 18px;
+}
+
+/* Faz a tabela ocupar toda a caixa. */
+table {
+  width: 100%;
+  min-width: 1050px;
+  border-collapse: collapse;
+}
+
+/* Títulos das colunas. */
+th {
+  padding: 15px;
+  color: var(--cor-texto-suave);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-align: left;
+  text-transform: uppercase;
+  background-color: var(--cor-rosa-claro);
+}
+
+/* Células da tabela. */
+td {
+  padding: 17px 15px;
+  font-size: 12px;
+  vertical-align: top;
+  border-top: 1px solid var(--cor-borda);
+}
+
+/* Organiza as informações secundárias dentro das células. */
+td small {
+  display: block;
+  margin-top: 5px;
+  color: var(--cor-texto-suave);
+  font-size: 10px;
+}
+
+/* Seletor de status. */
+select {
+  min-width: 120px;
+  padding: 9px 10px;
+  font: inherit;
+  border: 1px solid var(--cor-borda);
+  border-radius: 9px;
+  outline: none;
+}
+
+/* Aplica cores diferentes de acordo com o status. */
+.status-pendente {
+  color: var(--cor-texto);
+  background-color: var(--cor-rosa-claro);
+}
+
+.status-confirmada {
+  color: var(--cor-sucesso);
+  background-color: var(--cor-branco);
+}
+
+.status-cancelada {
+  color: var(--cor-erro);
+  background-color: var(--cor-branco);
+}
+
+/* Botão de exclusão. */
+.botao-excluir {
+  padding: 9px 13px;
+  color: var(--cor-erro);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: var(--cor-branco);
+  border: 1px solid var(--cor-erro);
+  border-radius: 999px;
+}
+
+/* Centraliza a mensagem exibida quando não existem reservas. */
+.sem-reservas {
+  max-width: 620px;
+  padding: 60px 30px;
+  margin: 50px auto;
+  text-align: center;
+  background-color: var(--cor-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: 22px;
+}
+
+/* Símbolo japonês decorativo. */
+.sem-reservas > span {
+  color: var(--cor-vermelho-japao);
+  font-family: var(--fonte-titulo);
+  font-size: 46px;
+}
+
+/* Link exibido quando a lista está vazia. */
+.sem-reservas a {
+  display: inline-block;
+  padding: 12px 20px;
+  color: var(--cor-branco);
+  text-decoration: none;
+  background-color: var(--cor-vermelho-japao);
+  border-radius: 999px;
+}
+
+/* ===== Responsividade ===== */
+
+/* Ajusta o layout para tablets e celulares. */
+@media (width <= 800px) {
+  .layout-admin {
+    grid-template-columns: 1fr;
+  }
+
+  .pagina-reservas {
+    padding: 30px 20px;
+  }
+
+  .titulo-pagina h1 {
+    font-size: 34px;
+  }
+}

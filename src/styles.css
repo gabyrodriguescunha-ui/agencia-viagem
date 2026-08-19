@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap");
+
+
+:root {
+  --cor-vermelho-japao: #c51a47;
+  --cor-rosa-sakura: #f99e9e;
+  --cor-rosa-claro: #f3ebe9;
+  --cor-fundo: #fbfbfd;
+  --cor-branco: #ffffff;
+  --cor-texto: #212121;
+  --cor-texto-suave: #6f6567;
+  --cor-borda: #eadcde;
+  --cor-fundo-cabecalho: rgb(255 255 255 / 88%);
+   --desfoque-cabecalho: 12px;
+
+  /* Sombras */
+  --sombra-card: 0 14px 34px rgb(62 37 44 / 9%);
+  --sombra-card-hover: 0 18px 42px rgb(62 37 44 / 15%);
+  --sombra-sol: 0 5px 14px rgb(197 26 71 / 30%);
+
+
+  --fonte-titulo: "Playfair Display", serif;
+  --fonte-texto: "Poppins", sans-serif;
+ 
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+
+  color: var(--cor-texto);
+  font-family: var(--fonte-texto);
+  background-color: var(--cor-fundo);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}

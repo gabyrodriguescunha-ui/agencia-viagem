@@ -1,0 +1,7 @@
+<!-- Camada que mantém as pétalas dentro do banner. -->
+<div class="petalas" aria-hidden="true">
+  <!-- Cria uma pétala para cada item da lista declarada no TypeScript. -->
+  @for (petala of petalas; track $index) {
+    <span class="petala"></span>
+  }
+</div>

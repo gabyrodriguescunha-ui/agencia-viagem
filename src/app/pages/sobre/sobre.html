@@ -1,0 +1,105 @@
+<!-- Exibe o cabeçalho principal da Sakura Trip. -->
+<app-cabecalho />
+
+<!-- Conteúdo principal da página Sobre nós. -->
+<main class="pagina-sobre">
+  <!-- Apresentação da agência. -->
+  <section class="apresentacao-sobre">
+    <div class="texto-apresentacao">
+      <p class="etiqueta">Sobre a Sakura Trip</p>
+
+      <h1>O Japão além dos cartões-postais</h1>
+
+      <p class="descricao">
+        Criamos roteiros que aproximam viajantes da história,
+        da cultura e da criatividade japonesa, com planejamento,
+        acolhimento e acompanhamento em português.
+      </p>
+
+      <a class="botao-roteiros" routerLink="/roteiros">
+        Conheça nossos roteiros →
+      </a>
+    </div>
+
+    <!-- Elemento decorativo inspirado na bandeira do Japão. -->
+    <div class="arte-japao" aria-hidden="true">
+      <span class="sol-japones"></span>
+      <span class="texto-japones">日本</span>
+    </div>
+  </section>
+
+  <!-- Conta a origem e o objetivo da agência. -->
+  <section class="nossa-historia">
+    <div>
+      <p class="etiqueta">Nossa história</p>
+      <h2>Viagens criadas para quem deseja viver o Japão</h2>
+    </div>
+
+    <div class="texto-historia">
+      <p>
+        A Sakura Trip nasceu da vontade de transformar o interesse
+        pelo Japão em experiências de viagem bem planejadas,
+        acessíveis e cheias de significado.
+      </p>
+
+      <p>
+        Nossos roteiros combinam cidades modernas, templos,
+        paisagens, gastronomia, fotografia, anime e mangá. Cada
+        viagem é organizada para que o visitante conheça tanto os
+        lugares famosos quanto os detalhes que tornam o país único.
+      </p>
+    </div>
+  </section>
+
+  <!-- Apresenta os princípios utilizados na criação dos roteiros. -->
+  <section class="secao-valores">
+    <div class="titulo-valores">
+      <p class="etiqueta">O que valorizamos</p>
+      <h2>Nossa maneira de viajar</h2>
+    </div>
+
+    <div class="lista-valores">
+      <!-- Primeiro valor da agência. -->
+      <article class="valor">
+        <span>01</span>
+        <h3>Imersão cultural</h3>
+        <p>
+          Roteiros que respeitam a cultura local e aproximam o
+          viajante das tradições e do cotidiano japonês.
+        </p>
+      </article>
+
+      <!-- Segundo valor da agência. -->
+      <article class="valor">
+        <span>02</span>
+        <h3>Planejamento cuidadoso</h3>
+        <p>
+          Datas, transportes, hospedagens e passeios organizados
+          para oferecer uma experiência tranquila.
+        </p>
+      </article>
+
+      <!-- Terceiro valor da agência. -->
+      <article class="valor">
+        <span>03</span>
+        <h3>Acompanhamento próximo</h3>
+        <p>
+          Informações claras e suporte em português antes e durante
+          os passeios previstos no roteiro.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Chamada final para a página de roteiros. -->
+  <section class="chamada-final">
+    <p class="etiqueta">Sua jornada começa aqui</p>
+    <h2>Pronto para conhecer o Japão?</h2>
+    <p>
+      Escolha o roteiro que combina com você e prepare-se para uma
+      experiência inesquecível.
+    </p>
+
+    <a routerLink="/roteiros">Ver roteiros disponíveis</a>
+  </section>
+</main>

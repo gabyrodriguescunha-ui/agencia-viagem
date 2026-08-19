@@ -1,0 +1,159 @@
+<!-- Divide a tela entre o menu e o gerenciamento de funcionários. -->
+<div class="layout-admin">
+  <!-- Menu compartilhado pelas páginas administrativas. -->
+  <app-menu-admin />
+
+  <!-- Conteúdo principal da página. -->
+  <main class="pagina-funcionarios">
+    <header class="cabecalho-pagina">
+      <div>
+        <p class="etiqueta">Área administrativa</p>
+        <h1>Funcionários</h1>
+        <p>Cadastre e acompanhe a equipe responsável pela agência.</p>
+      </div>
+
+      <button
+        type="button"
+        class="botao-principal"
+        (click)="novoFuncionario()"
+      >
+        + Novo funcionário
+      </button>
+    </header>
+
+    <!-- O formulário aparece durante um cadastro ou uma edição. -->
+    @if (formularioAberto) {
+      <section class="painel-formulario">
+        <h2>
+          {{ formulario.id ? "Editar funcionário" : "Cadastrar funcionário" }}
+        </h2>
+
+        <form (ngSubmit)="salvar()">
+          <label>
+            Nome completo
+            <input
+              name="nome"
+              [(ngModel)]="formulario.nome"
+              minlength="3"
+              required
+            />
+          </label>
+
+          <label>
+            Cargo
+            <select name="cargo" [(ngModel)]="formulario.cargo" required>
+              @for (cargo of cargos; track cargo) {
+                <option [value]="cargo">{{ cargo }}</option>
+              }
+            </select>
+          </label>
+
+          <label>
+            E-mail
+            <input
+              name="email"
+              type="email"
+              [(ngModel)]="formulario.email"
+              required
+            />
+          </label>
+
+          <label>
+            Telefone
+            <input
+              name="telefone"
+              type="tel"
+              [(ngModel)]="formulario.telefone"
+              placeholder="(00) 00000-0000"
+              required
+            />
+          </label>
+
+          <label class="campo-situacao">
+            <input
+              name="ativo"
+              type="checkbox"
+              [(ngModel)]="formulario.ativo"
+            />
+            Funcionário ativo
+          </label>
+
+          <div class="acoes-formulario">
+            <button
+              type="button"
+              class="botao-secundario"
+              (click)="cancelar()"
+            >
+              Cancelar
+            </button>
+            <button type="submit" class="botao-principal">
+              Salvar funcionário
+            </button>
+          </div>
+        </form>
+      </section>
+    }
+
+    <!-- Tabela com os funcionários cadastrados. -->
+    <section class="painel-tabela">
+      @if (funcionarios().length > 0) {
+        <div class="tabela-responsiva">
+          <table>
+            <thead>
+              <tr>
+                <th>Funcionário</th>
+                <th>Cargo</th>
+                <th>Telefone</th>
+                <th>Situação</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @for (funcionario of funcionarios(); track funcionario.id) {
+                <tr>
+                  <td>
+                    <strong>{{ funcionario.nome }}</strong>
+                    <small>{{ funcionario.email }}</small>
+                  </td>
+                  <td>{{ funcionario.cargo }}</td>
+                  <td>{{ funcionario.telefone }}</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="botao-situacao"
+                      [class.ativo]="funcionario.ativo"
+                      [class.inativo]="!funcionario.ativo"
+                      (click)="alterarSituacao(funcionario.id)"
+                    >
+                      {{ funcionario.ativo ? "Ativo" : "Inativo" }}
+                    </button>
+                  </td>
+                  <td class="acoes-tabela">
+                    <button type="button" (click)="editar(funcionario)">
+                      Editar
+                    </button>
+                    <button
+                      type="button"
+                      class="excluir"
+                      (click)="excluir(funcionario)"
+                    >
+                      Excluir
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <!-- Mensagem exibida quando a lista está vazia. -->
+        <div class="estado-vazio">
+          <span>人</span>
+          <h2>Nenhum funcionário cadastrado</h2>
+          <p>Use o botão “Novo funcionário” para iniciar o cadastro.</p>
+        </div>
+      }
+    </section>
+  </main>
+</div>

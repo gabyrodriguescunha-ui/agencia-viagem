@@ -1,0 +1,125 @@
+:host { 
+  display: block; 
+  height: 100%; 
+}
+
+.card-roteiro {
+  height: 100%; 
+  overflow: hidden; 
+  background: var(--cor-branco);
+  border: 1px solid var(--cor-borda); 
+  border-radius: 24px;
+  box-shadow: 0 14px 34px var(--sombra-card);
+transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.card-roteiro:hover { 
+  transform: translateY(-5px); 
+  box-shadow: 0 18px 42px var(--sombra-card-hover); 
+}
+
+.area-imagem { 
+  position: relative; 
+  height: 260px; 
+  overflow: hidden; 
+}
+
+.area-imagem img {
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  transition: transform 350ms ease; 
+}
+
+.card-roteiro:hover img {
+  transform: scale(1.04); 
+}
+
+.categoria {
+  position: absolute; 
+  top: 18px; left: 18px; 
+  padding: 7px 12px; 
+  color: var(--cor-texto); 
+  font-size: 11px; 
+  font-weight: 600; 
+  background: var(--cor-fundo-cabecalho); 
+  border-radius: 999px; }
+
+.conteudo-card { 
+  padding: 24px; 
+}
+
+.localizacao { 
+  margin: 0 0 8px; 
+  color: var(--cor-vermelho-japao); 
+  font-size: 12px; font-weight: 600; 
+  letter-spacing: 1.5px; 
+  text-transform: uppercase; }
+
+h2 { 
+  margin: 0 0 12px; 
+  font-family: var(--fonte-titulo); 
+  font-size: 28px; 
+}
+
+.descricao {
+  min-height: 72px; 
+  margin: 0; color: var(--cor-texto-suave); 
+  font-size: 14px; line-height: 1.7;
+}
+
+.informacoes { 
+  display: flex; 
+  justify-content: space-between; 
+  gap: 12px; 
+  padding: 16px 0; 
+  margin-top: 16px; 
+  color: var(--cor-texto-suave); 
+  font-size: 12px; 
+  border-block: 1px solid var(--cor-borda);
+ }
+
+.rodape-card { 
+  display: flex; 
+  align-items: flex-end; 
+  justify-content: space-between; 
+  gap: 18px; 
+  margin-top: 20px; 
+}
+
+.preco { 
+  display: grid; 
+}
+
+.preco small, .preco span {
+  color: var(--cor-texto-suave); 
+  font-size: 10px; 
+}
+
+.preco strong { 
+  color: var(--cor-texto); 
+  font-size: 20px; 
+}
+
+.botao-detalhes { 
+  padding: 11px 15px; 
+  color: var(--cor-branco); 
+  font-size: 12px; font-weight: 600;
+  text-decoration: none; 
+  background: var(--cor-vermelho-japao); 
+  border-radius: 999px; 
+}
+
+/* ==== Responsividade ==== */
+
+@media (width <= 420px) { 
+.rodape-card { 
+  align-items: stretch; 
+  flex-direction: column;
+} 
+
+.botao-detalhes { 
+  text-align: center;
+
+} 
+}

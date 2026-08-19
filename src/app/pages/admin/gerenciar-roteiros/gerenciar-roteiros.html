@@ -1,0 +1,113 @@
+<!-- Mantém o menu e o conteúdo administrativo lado a lado. -->
+<div class="layout-admin">
+  <app-menu-admin />
+
+  <main class="conteudo-admin">
+    <header class="cabecalho-pagina">
+      <div>
+        <p class="etiqueta">Área administrativa</p>
+        <h1>Gerenciar roteiros</h1>
+        <p>Cadastre, edite ou remova os pacotes exibidos no site.</p>
+      </div>
+      <button type="button" class="botao-principal" (click)="novoRoteiro()">+ Novo roteiro</button>
+    </header>
+
+    <!-- Exibe o formulário apenas durante um cadastro ou uma edição. -->
+    @if (formularioAberto) {
+      <section class="painel-formulario">
+        <h2>{{ formulario.id ? "Editar roteiro" : "Cadastrar roteiro" }}</h2>
+
+        <form (ngSubmit)="salvar()">
+          <label>Nome 
+            <input name="nome" 
+            [(ngModel)]="formulario.nome" 
+            required />
+          </label>
+          <label>Categoria 
+            <input name="categoria" 
+            [(ngModel)]="formulario.categoria"
+             required />
+            </label>
+          <label>Cidade 
+            <input name="cidade" [(ngModel)]="formulario.cidade" required />
+          </label>
+          <label>Duração 
+            <input name="duracao" [(ngModel)]="formulario.duracao" required />
+          </label>
+          <label>Preço por pessoa 
+            <input name="preco" 
+            type="number" min="0" 
+            [(ngModel)]="formulario.preco" required />
+          </label>
+          <label>Vagas 
+            <input name="vagas" 
+            type="number" min="0" 
+            [(ngModel)]="formulario.vagas" 
+            required />
+          </label>
+
+          <!-- Permite escolher uma foto diretamente do computador. -->
+          <div class="campo-imagem campo-largo">
+            <label for="imagem">Imagem do roteiro</label>
+            <input
+              id="imagem"
+              name="imagem"
+              type="file"
+              accept="image/png, image/jpeg, image/webp"
+              (change)="selecionarImagem($event)"
+            />
+
+            <small class="ajuda-imagem">Formatos aceitos: JPG, PNG ou WebP. Tamanho máximo: 1 MB.</small>
+
+            @if (erroImagem) {
+              <p class="erro-imagem">{{ erroImagem }}</p>
+            }
+
+            @if (imagemPreview) {
+              <div class="imagem-preview">
+                <img [src]="imagemPreview" alt="Pré-visualização da imagem do roteiro" />
+              </div>
+            }
+          </div>
+
+          <label class="campo-largo">
+            Descrição
+            <textarea name="descricao" rows="4" [(ngModel)]="formulario.descricao" required></textarea>
+          </label>
+
+          <div class="acoes-formulario campo-largo">
+            <button type="button" class="botao-secundario" (click)="cancelar()">Cancelar</button>
+            <button type="submit" class="botao-principal">Salvar roteiro</button>
+          </div>
+        </form>
+      </section>
+    }
+
+    <!-- Apresenta todos os roteiros cadastrados. -->
+    <section class="painel-tabela">
+      @if (roteiros().length) {
+        <div class="tabela-responsiva">
+          <table>
+            <thead><tr><th>Roteiro</th><th>Destino</th><th>Preço</th><th>Vagas</th><th>Ações</th></tr></thead>
+            <tbody>
+              @for (roteiro of roteiros(); track roteiro.id) {
+                <tr>
+                  <td><strong>{{ roteiro.nome }}</strong><small>{{ roteiro.categoria }}</small></td>
+                  <td>{{ roteiro.cidade }}</td>
+                  <td>{{ formatarPreco(roteiro.preco) }}</td>
+                  <td>{{ roteiro.vagas }}</td>
+                  <td class="acoes-tabela">
+                    <button type="button" (click)="editar(roteiro)">Editar</button>
+                    <button type="button" class="excluir" (click)="excluir(roteiro)">Excluir</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <p class="estado-vazio">Nenhum roteiro cadastrado.</p>
+      }
+    </section>
+  </main>
+</div>

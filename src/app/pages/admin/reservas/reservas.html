@@ -1,0 +1,114 @@
+<!-- Divide a tela entre o menu e a página de reservas. -->
+<div class="layout-admin">
+  <!-- Menu compartilhado pelas páginas administrativas. -->
+  <app-menu-admin />
+
+  <!-- Conteúdo principal da página. -->
+  <main class="pagina-reservas">
+    <header class="titulo-pagina">
+      <p class="etiqueta">Área administrativa</p>
+      <h1>Gerenciar reservas</h1>
+      <p>
+        Consulte os dados dos clientes e atualize o status das reservas.
+      </p>
+    </header>
+  <!-- Verifica se existe pelo menos uma reserva. -->
+  @if (reservas.length > 0) {
+    <!-- Permite rolagem horizontal em telas menores. -->
+    <div class="tabela-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Roteiro</th>
+            <th>Viagem</th>
+            <th>Pagamento</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- Cria uma linha para cada reserva salva. -->
+          @for (reserva of reservas; track reserva.id) {
+            <tr>
+              <!-- Dados do cliente responsável pela reserva. -->
+              <td>
+                <strong>{{ reserva.nome }}</strong>
+                <small>{{ reserva.email }}</small>
+                <small>{{ reserva.telefone }}</small>
+              </td>
+
+              <!-- Informações do roteiro escolhido. -->
+              <td>
+                <strong>{{ reserva.roteiro.nome }}</strong>
+                <small>{{ reserva.roteiro.cidade }}</small>
+              </td>
+
+              <!-- Data da viagem e quantidade de pessoas. -->
+              <td>
+                <strong>{{ reserva.data }}</strong>
+                <small>
+                  {{ reserva.viajantes }} viajante(s)
+                </small>
+                <small>
+                  Reservada em
+                  {{ formatarDataCriacao(reserva.criadaEm) }}
+                </small>
+              </td>
+
+              <!-- Forma de pagamento escolhida. -->
+              <td>{{ formatarPagamento(reserva) }}</td>
+
+              <!-- Valor total calculado na reserva. -->
+              <td>
+                <strong>
+                  {{ formatarPreco(reserva.valorTotal) }}
+                </strong>
+              </td>
+
+              <!-- Permite alterar a situação da reserva. -->
+              <td>
+                <select
+                  [value]="reserva.status"
+                  (change)="alterarStatus(reserva.id, $event)"
+                  [class.status-pendente]="reserva.status === 'Pendente'"
+                  [class.status-confirmada]="reserva.status === 'Confirmada'"
+                  [class.status-cancelada]="reserva.status === 'Cancelada'"
+                >
+                  <option value="Pendente">Pendente</option>
+                  <option value="Confirmada">Confirmada</option>
+                  <option value="Cancelada">Cancelada</option>
+                </select>
+              </td>
+
+              <!-- Botão responsável pela exclusão. -->
+              <td>
+                <button
+                  type="button"
+                  class="botao-excluir"
+                  (click)="excluirReserva(reserva.id)"
+                >
+                  Excluir
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else {
+    <!-- Mensagem apresentada quando não existem reservas salvas. -->
+    <section class="sem-reservas">
+      <span>予約</span>
+      <h2>Nenhuma reserva encontrada</h2>
+      <p>
+        As reservas confirmadas pelos clientes aparecerão aqui.
+      </p>
+
+      <a routerLink="/roteiros">Ver roteiros</a>
+    </section>
+  }
+  </main>
+</div>

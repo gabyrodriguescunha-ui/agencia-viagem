@@ -1,0 +1,121 @@
+<!-- Divide a tela entre o menu e o painel administrativo. -->
+<div class="layout-admin">
+  <!-- Menu compartilhado pelas páginas administrativas. -->
+  <app-menu-admin />
+
+  <!-- Conteúdo principal do dashboard. -->
+  <main class="pagina-dashboard">
+    <header class="titulo-pagina">
+      <div>
+        <p class="etiqueta">Visão geral</p>
+        <h1>Dashboard</h1>
+        <p>Acompanhe os principais resultados da Sakura Trip.</p>
+      </div>
+
+      <a class="botao-site" routerLink="/">Ver site público</a>
+    </header>
+
+    <!-- Indicadores calculados com os dados dos serviços. -->
+    <section class="indicadores" aria-label="Indicadores administrativos">
+      <article class="indicador indicador-reservas">
+        <span>Reservas</span>
+        <strong>{{ reservas.length }}</strong>
+        <small>{{ reservasPendentes }} aguardando análise</small>
+      </article>
+
+      <article class="indicador indicador-receita">
+        <span>Faturamento confirmado</span>
+        <strong>{{ formatarPreco(faturamentoConfirmado) }}</strong>
+        <small>{{ reservasConfirmadas }} reserva(s) confirmada(s)</small>
+      </article>
+
+      <article class="indicador indicador-roteiros">
+        <span>Roteiros disponíveis</span>
+        <strong>{{ roteiros().length }}</strong>
+        <small>Pacotes publicados no site</small>
+      </article>
+
+      <article class="indicador indicador-equipe">
+        <span>Equipe ativa</span>
+        <strong>{{ funcionariosAtivos }}</strong>
+        <small>{{ funcionarios().length }} funcionário(s) cadastrado(s)</small>
+      </article>
+    </section>
+
+    <!-- Organiza o resumo das reservas e os atalhos em duas colunas. -->
+    <div class="conteudo-dashboard">
+      <section class="painel painel-reservas">
+        <header class="titulo-secao">
+          <div>
+            <h2>Reservas recentes</h2>
+            <p>Últimas solicitações realizadas pelos clientes.</p>
+          </div>
+          <a routerLink="/admin/reservas">Ver todas</a>
+        </header>
+
+        @if (reservasRecentes.length > 0) {
+          <div class="lista-reservas">
+            @for (reserva of reservasRecentes; track reserva.id) {
+              <article class="reserva-recente">
+                <div>
+                  <strong>{{ reserva.nome }}</strong>
+                  <span>{{ reserva.roteiro.nome }}</span>
+                </div>
+
+                <div class="dados-reserva">
+                  <strong>{{ formatarPreco(reserva.valorTotal) }}</strong>
+                  <small>{{ formatarData(reserva.criadaEm) }}</small>
+                </div>
+
+                <span
+                  class="status"
+                  [class.status-pendente]="reserva.status === 'Pendente'"
+                  [class.status-confirmada]="reserva.status === 'Confirmada'"
+                  [class.status-cancelada]="reserva.status === 'Cancelada'"
+                >
+                  {{ reserva.status }}
+                </span>
+              </article>
+            }
+          </div>
+        } @else {
+          <!-- Mensagem exibida quando ainda não existem reservas. -->
+          <div class="estado-vazio">
+            <span>予約</span>
+            <h3>Nenhuma reserva encontrada</h3>
+            <p>As novas reservas aparecerão neste painel.</p>
+          </div>
+        }
+      </section>
+
+      <!-- Links rápidos para as páginas administrativas. -->
+      <aside class="painel painel-atalhos">
+        <header class="titulo-secao">
+          <div>
+            <h2>Acessos rápidos</h2>
+            <p>Abra uma área do gerenciamento.</p>
+          </div>
+        </header>
+
+        <nav aria-label="Acessos rápidos do painel">
+          <a routerLink="/admin/reservas">
+            <span>01</span>
+            <div><strong>Reservas</strong><small>Consultar solicitações</small></div>
+          </a>
+          <a routerLink="/admin/roteiros">
+            <span>02</span>
+            <div><strong>Roteiros</strong><small>Gerenciar os pacotes</small></div>
+          </a>
+          <a routerLink="/admin/financeiro">
+            <span>03</span>
+            <div><strong>Financeiro</strong><small>Acompanhar os valores</small></div>
+          </a>
+          <a routerLink="/admin/funcionarios">
+            <span>04</span>
+            <div><strong>Funcionários</strong><small>Administrar a equipe</small></div>
+          </a>
+        </nav>
+      </aside>
+    </div>
+  </main>
+</div>
