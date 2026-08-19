@@ -5,16 +5,13 @@
 .cabecalho {
   position: relative;
   z-index: 10;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 32px;
-
   width: 100%;
   min-height: 82px;
   padding: 14px 6%;
-
   background-color: var(--cor-fundo-cabecalho);
   border-bottom: 1px solid var(--cor-borda);
   backdrop-filter: blur(var(--desfoque-cabecalho));
@@ -24,7 +21,6 @@
   display: flex;
   align-items: center;
   gap: 12px;
-
   color: var(--cor-texto);
   text-decoration: none;
 }

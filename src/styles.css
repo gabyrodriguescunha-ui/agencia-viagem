@@ -36,11 +36,23 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-
   color: var(--cor-texto);
   font-family: var(--fonte-texto);
   background-color: var(--cor-fundo);
 }
+
+/* Mantém o rodapé no final da tela em páginas com pouco conteúdo. */
+.estrutura-aplicacao {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Permite que o conteúdo principal ocupe o espaço disponível. */
+.conteudo-principal {
+  flex: 1;
+}
+
 
 button,
 input,

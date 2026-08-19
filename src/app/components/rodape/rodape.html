@@ -1,1 +1,26 @@
-<p>rodape works!</p>
+<!-- Rodapé principal exibido nas páginas públicas da Sakura Trip. -->
+<footer class="rodape">
+  <!-- Limita a largura e centraliza todo o conteúdo. -->
+  <div class="conteudo-rodape">
+    <!-- Identificação visual da agência. -->
+    <a class="marca-rodape" routerLink="/" aria-label="Ir para a página inicial">
+      <span class="sol-rodape" aria-hidden="true"></span>
+      <strong>Sakura Trip</strong>
+    </a>
+
+    <!-- Links principais do site. -->
+    <nav class="navegacao-rodape" aria-label="Navegação do rodapé">
+      <a routerLink="/">Início</a>
+      <a routerLink="/roteiros">Roteiros</a>
+      <a routerLink="/sobre">Sobre nós</a>
+    </nav>
+
+    <!-- Linha decorativa que separa os direitos autorais. -->
+    <div class="divisor-rodape"></div>
+
+    <!-- O ano é atualizado automaticamente pelo componente. -->
+    <small>
+      © {{ anoAtual }} Desenvolvido por Gabriela Rodrigues.
+    </small>
+  </div>
+</footer>
