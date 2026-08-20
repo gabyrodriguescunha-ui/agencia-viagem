@@ -7,9 +7,8 @@
 .rodape {
   width: 100%;
   padding: 34px 24px 24px;
-  color: var(--cor-texto);
-  background-color: var(--cor-fundo-cabecalho);
-  backdrop-filter: blur(var(--desfoque-cabecalho));
+  color: var(--cor-branco);
+  background-color: var(--cor-fundo-rodape);
   box-sizing: border-box;
 }
 
@@ -28,7 +27,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--cor-texto);
+  color: var(--cor-branco);
   font-family: var(--fonte-titulo);
   font-size: 24px;
   text-decoration: none;
@@ -46,7 +45,7 @@
 /* Descrição da agência. */
 .conteudo-rodape > p {
   margin: 10px 0 18px;
-  color: var(--cor-rosa-claro);
+  color: var(--cor-rosa-sakura);
   font-size: 14px;
   line-height: 22px;
 }
@@ -58,17 +57,19 @@
   gap: 24px;
 }
 
-/* Estiliza os links do rodapé. */
+/* Links do rodapé. */
 .navegacao-rodape a {
-  color: var(--cor-texto);
+  color: var(--cor-branco);
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
+  opacity: 0.85;
 }
 
 /* Destaca o link quando o visitante passa o mouse. */
 .navegacao-rodape a:hover {
   color: var(--cor-vermelho-japao);
+  opacity: 1;
 }
 
 /* Separa a navegação dos direitos autorais com o rosa da identidade visual. */
@@ -81,9 +82,10 @@
   opacity: 0.45;
 }
 
-/* Estiliza o texto inferior do rodapé. */
+/* Texto inferior do rodapé. */
 .conteudo-rodape small {
-  color: var(--cor-texto-suave);
+  color: var(--cor-rosa-claro);
+  opacity: 0.7;
   font-size: 12px;
   line-height: 18px;
 }
